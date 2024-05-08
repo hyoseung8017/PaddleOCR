@@ -55,7 +55,7 @@ class WandbLogger(BaseLogger):
                 )
                 self._run = self.wandb.run
             else:
-                self._run = self.wandb.init(**self._wandb_init)
+                self._run = self.wandb.init(**self._wandb_init) # 여기
         return self._run
 
     def log_metrics(self, metrics, prefix=None, step=None):
