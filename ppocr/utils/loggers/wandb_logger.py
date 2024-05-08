@@ -1,6 +1,7 @@
 import os
 from .base_logger import BaseLogger
 
+
 class WandbLogger(BaseLogger):
     def __init__(
         self,
@@ -14,6 +15,7 @@ class WandbLogger(BaseLogger):
     ):
         try:
             import wandb
+
             self.wandb = wandb
         except ModuleNotFoundError:
             raise ModuleNotFoundError("Please install wandb using `pip install wandb`")
@@ -33,7 +35,6 @@ class WandbLogger(BaseLogger):
             entity=self.entity,
             dir=self.save_dir,
             resume="allow",
-            # Remove 'timeout' if it exists
         )
         self._wandb_init.update(**kwargs)
 
@@ -54,8 +55,6 @@ class WandbLogger(BaseLogger):
                 )
                 self._run = self.wandb.run
             else:
-                # Remove 'timeout' if it exists
-                self._wandb_init.pop('timeout', None)
                 self._run = self.wandb.init(**self._wandb_init)
         return self._run
 
