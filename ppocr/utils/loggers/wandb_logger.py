@@ -11,6 +11,7 @@ class WandbLogger(BaseLogger):
         entity=None,
         save_dir=None,
         config=None,
+        timeout=90,
         **kwargs
     ):
         try:
